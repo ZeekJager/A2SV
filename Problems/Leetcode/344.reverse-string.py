@@ -10,13 +10,14 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-        j=len(s)-1
-        for i in range(len(s)):
+        i=0
+        n=len(s)
+        j=n-1
+        
+        while i<j:
+            s[i], s[j] = s[j], s[i]
+            i+=1
+            j-=1
             
-            if j<=i:
-                break
-            else:
-                s[i], s[j] = s[j], s[i]
-                j-=1
 # @lc code=end
 

@@ -1,0 +1,43 @@
+class Solution:
+    def findRelativeRanks(self, arr: List[int]) -> List[str]:
+        ans=[]
+        if len(arr)==0:
+            return ans
+
+        
+        arr1=copy.copy(arr)
+        arr2=copy.copy(arr)
+        m=max(arr)
+        store=[0]*(m+1)
+
+        for i in arr:
+            store[i]+=1
+
+        target=0
+        for index,value in enumerate(store):
+            for i in range(value):
+                arr[target]=index
+                target+=1
+        if len(arr)==1:
+            ans.append("Gold Medal")
+            return ans
+        elif len(arr)==2:
+            arr1[-1] = "Gold Medal"
+            arr1[-2] = "Silver Medal"
+            dict1=dict(zip(arr,arr1))
+            for i in arr2:
+                ans.append(str(dict1[i]))
+            return ans
+
+        arr1[-1] = "Gold Medal"
+        arr1[-2] = "Silver Medal"
+        arr1[-3] = "Bronze Medal"
+        n=len(arr1)
+        for i in range(len(arr1)-3):
+            arr1[i]=len(arr)-i
+
+        dict1=dict(zip(arr,arr1))
+        ans=[]
+        for i in arr2:
+            ans.append(str(dict1[i]))
+        return ans

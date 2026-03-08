@@ -1,0 +1,20 @@
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        output=[]
+
+        f=s=0
+        while f<m and s<n:
+            if nums1[f]<nums2[s]:
+                output.append(nums1[f])
+                f+=1
+            else:
+                output.append(nums2[s])
+                s += 1
+
+        output.extend(nums1[f:m])
+        output.extend(nums2[s:])
+        nums1[:]=output
+        

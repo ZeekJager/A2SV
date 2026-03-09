@@ -1,0 +1,18 @@
+class Solution:
+    def targetIndices(self, nums: List[int], target: int) -> List[int]:
+        output=[]
+        m=max(nums)
+        store=[0]*(m+1)
+        for i in nums:
+            store[i]+=1
+
+        t=0
+
+        for index, value in enumerate(store):
+            for i in range (value):
+                nums[t]= index
+                t+=1
+        for i in range(len(nums)):
+            if nums[i]==target:
+                output.append(i)
+        return output

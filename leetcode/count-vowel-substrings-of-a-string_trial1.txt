@@ -1,0 +1,27 @@
+class Solution:
+    def countVowelSubstrings(self, word: str) -> int:
+        vowels = set('aeiou')
+        n = len(word)
+        count = 0
+        
+        left = 0
+        
+        while left < n:
+            if word[left] not in vowels:
+                left += 1
+                continue
+            
+            right = left
+            freq = {}
+            
+            while right < n and word[right] in vowels:
+                freq[word[right]] = freq.get(word[right], 0) + 1
+                
+                if len(freq) == 5:
+                    count += 1
+                
+                right += 1
+            
+            left += 1
+        
+        return count

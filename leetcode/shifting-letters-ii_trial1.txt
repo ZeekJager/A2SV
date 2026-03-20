@@ -1,0 +1,22 @@
+from typing import List
+
+class Solution:
+    def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
+        n = len(s)
+        diff = [0] * (n + 1)
+
+        for l, r, direction in shifts:
+            val = 1 if direction == 1 else -1
+            diff[l] += val
+            if r + 1 < len(diff):
+                diff[r + 1] -= val
+
+        res = []
+        cur = 0
+
+        for i, ch in enumerate(s):
+            cur += diff[i]
+            new_pos = (ord(ch) - ord('a') + cur) % 26
+            res.append(chr(ord('a') + new_pos))
+
+        return ''.join(res)

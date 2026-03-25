@@ -1,0 +1,17 @@
+class Solution:
+    def maxOperations(self, nums: List[int], k: int) -> int:
+        freq = Counter(nums)
+        res = 0
+        
+        for num in nums:
+            if freq[num] == 0:
+                continue
+            complement = k - num
+            if freq[complement] > 0:
+                if num == complement and freq[num] < 2:
+                    continue
+                freq[num] -= 1
+                freq[complement] -= 1
+                res += 1
+        
+        return res

@@ -1,0 +1,15 @@
+from collections import Counter
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        s=list(s)
+        count=Counter(s)
+        for i in range(len(s)):
+
+            if count[s[i]] <2:
+                return i
+                break
+        return -1
+
+        
+
+

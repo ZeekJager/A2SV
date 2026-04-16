@@ -1,0 +1,27 @@
+class Solution:
+    def decodeString(self, s: str) -> str:
+        def dfs(i):
+            curr = ""
+            k = 0
+
+            while i < len(s):
+                if s[i].isdigit():
+                    k = k * 10 + int(s[i])
+
+                elif s[i] == "[":
+                    sub, i = dfs(i + 1)
+                    curr += k * sub
+                    k = 0
+
+                elif s[i] == "]":
+                    return curr, i
+
+                else:
+                    curr += s[i]
+
+                i += 1
+
+            return curr, i
+
+        result, _ = dfs(0)
+        return result

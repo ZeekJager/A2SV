@@ -1,0 +1,25 @@
+class MyCalendar:
+    def __init__(self):
+        self.calendar = SortedDict()
+
+    def book(self, startTime: int, endTime: int) -> bool:
+        idx = self.calendar.bisect_right(startTime)
+        
+        if idx < len(self.calendar):
+            next_start, next_end = self.calendar.peekitem(idx)
+            if startTime < next_end and endTime > next_start:
+                return False
+        
+        if idx > 0:
+            prev_start, prev_end = self.calendar.peekitem(idx - 1)
+            if startTime < prev_end and endTime > prev_start:
+                return False
+        
+        self.calendar[startTime] = endTime
+        return True
+
+
+
+# Your MyCalendar object will be instantiated and called as such:
+# obj = MyCalendar()
+# param_1 = obj.book(startTime,endTime)
